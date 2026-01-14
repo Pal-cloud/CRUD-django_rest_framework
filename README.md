@@ -188,10 +188,6 @@ python manage.py test
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-## 👨‍💻 Autor
-
-Pal - paloma.gom.sal@gmail.com
-
 ## 🔗 Enlaces
 
 - [Documentación de Django](https://docs.djangoproject.com/)
