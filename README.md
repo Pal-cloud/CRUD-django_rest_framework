@@ -20,7 +20,7 @@ Una aplicación web desarrollada con Django y Django REST Framework para gestion
 
 ### 1. Clonar el repositorio
 ```bash
-git clone <url-del-repositorio>
+git clone <https://github.com/Pal-cloud/CRUD-django_rest_framework>
 cd CRUD-django_rest_framework/libreria
 ```
 
