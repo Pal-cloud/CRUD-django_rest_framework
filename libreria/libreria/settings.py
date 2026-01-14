@@ -11,11 +11,18 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config
+import os
+from dotenv import load_dotenv
 import pymysql
+
+# Carga las variables de entorno del archivo .env
+load_dotenv()
 
 # Configurar PyMySQL como reemplazo de MySQLdb
 pymysql.install_as_MySQLdb()
+
+# Patch para la versión de PyMySQL con Django 6.0+
+pymysql.version_info = (2, 2, 4, "final", 0)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,10 +32,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1', 'yes']
 
 ALLOWED_HOSTS = []
 
@@ -82,12 +89,16 @@ WSGI_APPLICATION = 'libreria.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': config('DATABASE_ENGINE', default='django.db.backends.sqlite3'),
-        'NAME': BASE_DIR / config('DATABASE_NAME', default='db.sqlite3'),
-        'USER': config('DATABASE_USER', default=''),
-        'PASSWORD': config('DATABASE_PASSWORD', default=''),
-        'HOST': config('DATABASE_HOST', default=''),
-        'PORT': config('DATABASE_PORT', default=''),
+        'ENGINE': 'django.db.backends.mysql',  # Cambia el motor a MySQL
+        'NAME': os.getenv('DB_NAME'),          # Nombre de tu base de datos
+        'USER': os.getenv('DB_USER'),          # Usuario de tu base de datos
+        'PASSWORD': os.getenv('DB_PASSWORD'),  # Contraseña del usuario
+        'HOST': os.getenv('DB_HOST'),          # Dirección del servidor de la base de datos (e.g., 'localhost')
+        'PORT': os.getenv('DB_PORT'),          # Puerto de la base de datos (por defecto es 3306 para MySQL)
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'autocommit': True,
+        },
     }
 }
 
