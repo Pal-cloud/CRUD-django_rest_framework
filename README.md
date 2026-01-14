@@ -190,7 +190,7 @@ python manage.py test
 
 ## 👨‍💻 Autor
 
-Tu Nombre - paloma.gom.sal@gmail.com
+Pal - paloma.gom.sal@gmail.com
 
 ## 🔗 Enlaces
 
@@ -199,4 +199,4 @@ Tu Nombre - paloma.gom.sal@gmail.com
 
 ---
 
-⌨️ con ❤️ por [Tu Nombre](https://github.com/Pal-cloud)
+⌨️ con ❤️ por [Pal-cloud](https://github.com/Pal-cloud)
